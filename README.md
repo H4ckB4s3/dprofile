@@ -1,4 +1,4 @@
-# dprofile
+# .dprofile
 Fetches TXT records and displays them in a Linktree-style interface.
 
 # Note:
@@ -27,7 +27,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
    - **Value/Data**: `<prefix>:<value>` (e.g., `link:example.com`)  
    - **TTL**: 60 minutes  
 
-3. After configuration, visit:  https://domainname.dprofile  or https://domainname.dprofile.hns.to (Replace "domainname" with your actual TLD or desired domain name.) 
+3. After configuration, visit:  http://domainname.dprofile  or http://domainname.dprofile.hns.to (Replace "domainname" with your actual TLD or desired domain name.) 
 
 
 ---

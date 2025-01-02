@@ -1,11 +1,6 @@
 # .dprofile
 Fetches TXT records and displays them in a Linktree-style interface.
 
-# Note:
-This is an experimental demo. It uses https://doh.hnsdns.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
-
-The primary goal of this demo is to establish a universal standard for TXT records and pave the way for APIs supporting wallets, clients, logins, and more based on this standard.
-
 # TXT Record Prefix Documentation
 
 This repository provides comprehensive documentation for TXT record prefixes used with Handshake (HNS) TLDs. These prefixes facilitate standardized data interpretation, enabling clients to easily recognize and interact with on-chain and off-chain records.
@@ -27,7 +22,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
    - **Value/Data**: `<prefix>:<value>` (e.g., `link:example.com`)  
    - **TTL**: 60 minutes  
 
-3. After configuration, visit:  http://domainname.dprofile  or http://domainname.dprofile.hns.to (Replace "domainname" with your actual TLD or desired domain name.) 
+3. After configuration, visit:  http://hackbase.dprofile  or http://hackbase.dprofile.hns.to (Replace "hackbase" with your actual TLD or desired domain name.) 
 
 
 ---
@@ -74,6 +69,11 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | `xmr:<address>`              | Monero wallet address            | `xmr:xmr_address`          |
 | `eth:<address>`              | Ethereum wallet address          | `eth:eth_address`          |
 ---
+
+# Note:
+This is an experimental demo. It uses https://doh.hnsdns.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
+
+The primary goal of this demo is to establish a universal standard for TXT records and pave the way for APIs supporting wallets, clients, logins, and more based on this standard.
 
 ## License
 

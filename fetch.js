@@ -90,7 +90,7 @@
                         linksDiv.innerHTML += `<a class="link" href="https://t.me/${value}" target="_blank"><img src="img/tg.png" alt="Telegram Icon"></a>`;
                         break;
                     case 'wa':
-                        linksDiv.innerHTML += `<a class="link" href="https://wa.me/${value}" target="_blank"><<img src="img/wa.png" alt="WhatsApp Icon"></a>`;
+                        linksDiv.innerHTML += `<a class="link" href="https://wa.me/${value}" target="_blank"><img src="img/wa.png" alt="WhatsApp Icon"></a>`;
                         break;
                     case 'sn':
                         linksDiv.innerHTML += `<a class="link" href="https://signal.me/#p/${value}" target="_blank"><img src="img/sn.png" alt="Signal Icon"></a>`;

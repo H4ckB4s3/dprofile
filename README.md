@@ -77,5 +77,7 @@ The primary goal of this demo is to establish a universal standard for TXT recor
 
 ## License
 
-This project is licensed under the MIT License.
+No license, no limits. Free to use, abuse and improve this code however you see fit.
+
+
 

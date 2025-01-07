@@ -19,6 +19,7 @@
             document.title = rootDomain;
 
             const url = `https://doh.hnsdns.com/dns-query?name=${rootDomain}&type=TXT`;
+            // Alternative source: const url = `https://easyhandshake.com:8053/dns-query?name=xv&type=TXT`;
             console.log("Fetch URL:", url);
 
             try {

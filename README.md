@@ -34,7 +34,8 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | `pfp:<url>`                  | Profile picture URL              | `pfp:example.com/img.png`  |
 | `mail:<email>`               | Email address                    | `mail:example@example.com` |
 | `link:<url>`                 | Redirect to a webpage            | `link:example.com`         |
-| `onion:<url>`                | Redirect to an Onion service     | `onion:example`            |
+| `onion:<url>`                | Onion address                    | `onion:example`            |
+| `pkdns:<url>`                | pkdns page                       | `pkdns:example`            |
 | `gh:<username>`              | GitHub profile/repo              | `gh:username`              |
 
 ### Social
@@ -76,7 +77,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 ---
 
 # Note:
-This is an experimental demo. It uses https://doh.hnsdns.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
+This is an experimental demo. It uses https://easyhandshake.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
 
 The primary goal of this demo is to establish a universal standard for TXT records and pave the way for APIs supporting wallets, clients, logins, and more based on this standard.
 

@@ -72,7 +72,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 ### External
 | **Prefix**                   | **Purpose**                      | **Example**                |
 |------------------------------|----------------------------------|----------------------------|
-| `ext:<address>`              | Fetch TXT records from an external TLD or SLD (HNS/ICANN)           | `ext:example.com`          |
+| `ext:<url>`              | Fetch TXT records from an external TLD or SLD (HNS/ICANN)           | `ext:example.com`          |
 ---
 
 # Note:

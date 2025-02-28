@@ -70,6 +70,12 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | `eth:<address>`              | Ethereum wallet address          | `eth:eth_address`          |
 ---
 
+### External
+| **Prefix**                   | **Purpose**                      | **Example**                |
+|------------------------------|----------------------------------|----------------------------|
+| `ext:<address>`              | Fetch TXT records from an external TLD or SLD           | `ext:example.com`          |
+---
+
 # Note:
 This is an experimental demo. It uses https://doh.hnsdns.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
 

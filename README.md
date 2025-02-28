@@ -77,9 +77,9 @@ TXT record prefixes standardize how information is structured and interpreted, m
 ---
 
 # Note:
-This is an experimental demo. It uses https://easyhandshake.com to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
+This is an experimental demo. It uses https://easyhandshake.com (by [pinheadmz](https://github.com/pinheadmz)) to fetch the TXT records and currently supports off-chain TXT records only. It works with Handshake HNS TLDs, HNS SLDs, and ICANN SLDs.
 
-The primary goal of this demo is to establish a universal standard for TXT records and pave the way for APIs supporting wallets, clients, logins, and more based on this standard.
+The primary goal of this demo is to establish a universal standard for TXT records and pave the way for APIs supporting wallets, clients, logins,...
 
 ## License
 

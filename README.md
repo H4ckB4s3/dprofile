@@ -68,12 +68,11 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | `hns:<address>`              | Handshake wallet address         | `hns:hns_address`          |
 | `xmr:<address>`              | Monero wallet address            | `xmr:xmr_address`          |
 | `eth:<address>`              | Ethereum wallet address          | `eth:eth_address`          |
----
 
 ### External
 | **Prefix**                   | **Purpose**                      | **Example**                |
 |------------------------------|----------------------------------|----------------------------|
-| `ext:<address>`              | Fetch TXT records from an external TLD or SLD           | `ext:example.com`          |
+| `ext:<address>`              | Fetch TXT records from an external TLD or SLD (HNS/ICANN)           | `ext:example.com`          |
 ---
 
 # Note:

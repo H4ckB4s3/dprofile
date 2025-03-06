@@ -35,7 +35,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | `mail:<email>`               | Email address                    | `mail:example@example.com` |
 | `link:<url>`                 | Redirect to a webpage            | `link:example.com`         |
 | `onion:<url>`                | Onion address                    | `onion:example`            |
-| `pkdns:<url>`                | pkdns page                       | `pkdns:example`            |
+| `pk:<url>`                   | pkdns page                       | `pk:example`               |
 | `gh:<username>`              | GitHub profile/repo              | `gh:username`              |
 
 ### Social

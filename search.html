@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dprofile: Self Sovereign DID</title>
+    <script src="script.js" defer></script>
+    <link rel="shortcut icon" href="/img/hns.ico" type="image/x-icon">
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Nitti Light", Helvetica, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Search Container Styles */
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 222px;
+        }
+
+        .logo-container {
+            text-align: center;
+        }
+
+        .dprofile-logo {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .search-box {
+            display: flex;
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px 20px;
+            outline: none;
+            font-size: 1rem;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .search-box button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #333333;
+        }
+
+        /* Linktree Container */
+        #linktree-container {
+            display: none; /* Initially hidden */
+            width: 100%; /* Full width */
+            min-height: 100vh; /* Full height */
+            padding: 20px;
+            text-align: center;
+            background-color: #fff; /* Default background color */
+            background-size: cover; /* For background image */
+            background-position: center; /* For background image */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Vertically center content */
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-top: 144px;
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile img:hover {
+            transform: scale(1.1);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 222px;
+            margin: 0 auto;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #007bff, #1e90ff);
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #1e90ff, #00aaff);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .currency-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .currency-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #007bff, #1e90ff);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .currency-button:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #1e90ff, #00aaff);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Go Back Button */
+        .go-back-button-container {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .go-back-button {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .go-back-button:hover {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* footer a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+        Styling for text links */
+	footer a {
+	    color: #666; /* Same dark color as the button */
+	    text-decoration: none;
+	    position: relative;
+	    display: inline-block; /* Ensure the element is treated as inline-block for the effect */
+	}
+
+	footer a::after {
+	    content: '';
+	    position: absolute;
+	    bottom: -4px; /* Moves the underline further below the text */
+	    left: 0;
+	    width: 0;
+	    height: 2px; /* Height of the underline */
+	    border-bottom: 2px dotted transparent; /* Default state: no visible underline */
+	    transition: width 0.5s ease; /* Controls the animation duration and timing */
+	}
+
+	footer a:hover::after {
+	    width: 100%; /* Expands the underline from left to right */
+	    border-bottom-color: #343a40; /* Matches the button background color */
+	}
+
+
+    </style>
+	</head>
+	<body>
+	    <div class="search-container" id="search-container">
+	        <div class="logo-container">
+	            <div class="dprofile-logo">.DPROFILE</div>
+	            <!---<div class="subtitle">Sovereign DID</div>-->
+	        </div>
+	        <div class="search-box">
+	            <input type="text" id="domain-input" placeholder="Enter TLD or SLD" autofocus>
+	            <button id="go-button">Go</button>
+	        </div>
+	    </div>
+	    <div id="linktree-container">
+	        <div class="profile" id="profile"></div>
+	        <div class="links" id="links"></div>
+	        <div class="currency-buttons" id="currency-buttons"></div>
+	        <div class="go-back-button-container">
+	            <button class="go-back-button" onclick="window.location.reload()">Go Back</button>
+	        </div>
+	    </div>
+	    <!-- Footer -->
+	    <footer>
+	        &copy; <span id="current-year">2025</span> <a href="/">.Dprofile</a> | <a href="https://github.com/H4ckB4s3/dprofile" target="_blank">GitHub</a> | <a href="/prefix.html" target="_blank">Setup your own DID</a>
+	    </footer>
+    <script>
+        const searchContainer = document.getElementById('search-container');
+        const linktreeContainer = document.getElementById('linktree-container');
+        const domainInput = document.getElementById('domain-input');
+        const goButton = document.getElementById('go-button');
+
+        async function fetchTXTRecords(domain) {
+            document.title = domain;
+
+            // First, fetch and display the root domain's records
+            const txtRecords = await fetchAndProcessTXTRecords(domain);
+
+            if (txtRecords) {
+                // Process and display the fetched records
+                processTXTRecords(txtRecords);
+
+                // Now process any external records asynchronously
+                txtRecords.forEach(record => {
+                    if (record.startsWith("ext:")) {
+                        const externalDomain = record.split("ext:")[1];
+                        fetchAndProcessTXTRecords(externalDomain).then(processTXTRecords);
+                    }
+                });
+
+                // Show linktree container and hide search container
+                searchContainer.style.display = 'none';
+                linktreeContainer.style.display = 'flex'; /* Use flex for vertical centering */
+            }
+        }
+
+        async function fetchAndProcessTXTRecords(domain) {
+            const url = `https://doh.hnsdns.com/dns-query?name=${domain}&type=TXT`;
+            console.log("Fetch URL:", url);
+
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: { 'Accept': 'application/dns-json' }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log("DNS Response:", data);
+
+                if (data.Answer && data.Answer.length > 0) {
+                    return data.Answer
+                        .filter(record => record.type === 16)
+                        .map(record => record.data.replace(/"/g, ''));
+                } else {
+                    console.error("No TXT records found in DNS response.");
+                    alert("No TXT records found for this domain.");
+                    return null;
+                }
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                alert(`An error occurred while fetching TXT records: ${error.message}`);
+                return null;
+            }
+        }
+
+        function processTXTRecords(txtRecords) {
+            const profileDiv = document.getElementById('profile');
+            const linksDiv = document.getElementById('links');
+            const currencyButtonsDiv = document.getElementById('currency-buttons');
+            let bgSet = false;
+            const currencies = { btc: null, hns: null, eth: null, xmr: null };
+
+            txtRecords.forEach(record => {
+                const [key, value] = record.split(':');
+
+                switch (key) {
+                    case 'pfp':
+                        profileDiv.innerHTML = `<img src="https://${value}" alt="Profile Picture">`;
+                        break;
+                    case 'bg':
+                        if (!bgSet) {
+                            console.log("Setting background image:", value);
+                            linktreeContainer.style.backgroundImage = `url(https://${value})`;
+                            linktreeContainer.style.backgroundSize = 'cover';
+                            linktreeContainer.style.backgroundPosition = 'center';
+                            bgSet = true;
+                        }
+                        break;
+                    case 'bgcolor':
+                        if (!bgSet) {
+                            console.log("Setting background color:", value);
+                            linktreeContainer.style.backgroundColor = `#${value}`;
+                            bgSet = true;
+                        }
+                        break;
+                    case 'tb':
+                    case 'nostr':
+                    case 'onion':
+                        linksDiv.innerHTML += `<a class="link" onclick="copyToClipboard('${value}')"><img src="img/${key}.png" alt="${key.toUpperCase()} Icon"></a>`;
+                        break;
+                    case 'x':
+                        linksDiv.innerHTML += `<a class="link" href="https://x.com/${value}" target="_blank"><img src="img/x.png" alt="X Icon"></a>`;
+                        break;
+                    case 'tg':
+                        linksDiv.innerHTML += `<a class="link" href="https://t.me/${value}" target="_blank"><img src="img/tg.png" alt="Telegram Icon"></a>`;
+                        break;
+                    case 'wa':
+                        linksDiv.innerHTML += `<a class="link" href="https://wa.me/${value}" target="_blank"><img src="img/wa.png" alt="WhatsApp Icon"></a>`;
+                        break;
+                    case 'sn':
+                        linksDiv.innerHTML += `<a class="link" href="https://signal.me/#p/${value}" target="_blank"><img src="img/sn.png" alt="Signal Icon"></a>`;
+                        break;
+                    case 'tel':
+                        linksDiv.innerHTML += `<a class="link" href="tel:${value}" target="_blank"><img src="img/tel.png" alt="Phone Icon"></a>`;
+                        break;
+                    case 'mail':
+                        linksDiv.innerHTML += `<a class="link" href="mailto:${value}" target="_blank"><img src="img/mail.png" alt="Mail Icon"></a>`;
+                        break;
+                    case 'gh':
+                        linksDiv.innerHTML += `<a class="link" href="https://github.com/${value}" target="_blank"><img src="img/gh.png" alt="GitHub Icon"></a>`;
+                        break;
+                    case 'link':
+                        linksDiv.innerHTML += `<a class="link" href="http://${value}" target="_blank"><img src="img/link.png" alt="Link Icon"></a>`;
+                        break;
+                    case 'ig':
+                        linksDiv.innerHTML += `<a class="link" href="https://www.instagram.com/${value}/" target="_blank"><img src="img/ig.png" alt="Instagram Icon"></a>`;
+                        break;
+                    case 'fb':
+                        linksDiv.innerHTML += `<a class="link" href="https://www.facebook.com/${value}" target="_blank"><img src="img/fb.png" alt="Facebook Icon"></a>`;
+                        break;
+                    case 'pk':
+                        linksDiv.innerHTML += `<a class="link" href="http://${value}./" target="_blank"><img src="img/pkdns.png" alt="pkdns Icon"></a>`;
+                        break;
+                    case 'sx':
+                        linksDiv.innerHTML += `<a class="link" href="https://simplex.chat/contact#/${value}.onion/" target="_blank"><img src="img/simplex.png" alt="SimpleX Icon"></a>`;
+                        break;
+                    case 'bsky':
+                        const bskyURL = value.includes('.') ? `https://bsky.app/profile/${value}` : `https://bsky.app/profile/${value}.bsky.social`;
+                        linksDiv.innerHTML += `<a class="link" href="${bskyURL}" target="_blank"><img src="img/bsky.png" alt="Bluesky Icon"></a>`;
+                        break;
+                    case 'btc':
+                    case 'hns':
+                    case 'eth':
+                    case 'xmr':
+                        currencies[key] = `<button class="currency-button" onclick="copyToClipboard('${value}')"><img src="img/${key}.png" alt="${key.toUpperCase()} Icon"></button>`;
+                        break;
+                    default:
+                        console.warn(`Unhandled record type: ${key}`);
+                }
+            });
+
+            Object.values(currencies).forEach(button => {
+                if (button) {
+                    currencyButtonsDiv.innerHTML += button;
+                }
+            });
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(`Copied to clipboard: ${text}`);
+                }).catch(err => {
+                    console.error('Clipboard API failed, using fallback: ', err);
+                    fallbackCopyToClipboard(text);
+                });
+            } else {
+                fallbackCopyToClipboard(text);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                alert(`Copied to clipboard: ${text}`);
+            } catch (err) {
+                console.error('Fallback: Copy failed', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        function handleSearch() {
+            const domain = domainInput.value.trim();
+            if (domain) {
+                fetchTXTRecords(domain);
+            } else {
+                alert("Please enter a domain.");
+            }
+        }
+
+        goButton.addEventListener('click', handleSearch);
+        domainInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Handle back button on mobile
+        window.onpopstate = function(event) {
+            searchContainer.style.display = 'flex';
+            linktreeContainer.style.display = 'none';
+        };
+    </script>
+</body>
+</html>

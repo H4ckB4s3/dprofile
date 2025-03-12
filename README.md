@@ -77,7 +77,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 ---
 
 # Note:
-This is an experimental demo. It uses https://easyhandshake.com (by [pinheadmz](https://github.com/pinheadmz)) to fetch the TXT records. When an NS is set up, it will fetch only off-chain TXT records.. It works with Handshake HNS TLDs, HNS SLDs, HNS dSLDs, and ICANN SLDs.
+This is an experimental demo. It uses https://hnsns.net (by ~~[Easy Handshake](https://easyhandshake.com) (by pinheadmz)~~ [eskimo](https://github.com/eskimo)) to fetch the TXT records. When an NS is set up, it will fetch only off-chain TXT records.. It works with Handshake HNS TLDs, HNS SLDs, HNS dSLDs, and ICANN SLDs.
 
 Using [fingertip](https://github.com/username/fingertip) is recommended. Only TLDs support a secure connection. So you can visit [https://tld.dprofile](https://tld.dprofile) but a SLD would be [http://sld.tld.dprofile](http://sld.tld.dprofile).
 

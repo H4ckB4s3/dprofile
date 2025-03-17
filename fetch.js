@@ -35,7 +35,7 @@ async function fetchTXTRecords() {
 
 async function fetchAndProcessTXTRecords(domain) {
     const url = `https://easyhandshake.com:8053/dns-query?name=${domain}&type=TXT`;
-        // alternative node: const url = `https://doh.hnsdns.com/dns-query?name=${domain}&type=TXT`;
+        // alternative node: const url = `https://hnsns.net/dns-query?name=${domain}&type=TXT`;
     console.log("Fetch URL:", url);
 
     try {

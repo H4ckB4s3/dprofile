@@ -1,0 +1,70 @@
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    listen 80;
+    listen [::]:80;
+
+    server_name dprofile;  # Covers dprofile
+
+    ssl_certificate /etc/ssl/dprofile.crt;
+    ssl_certificate_key /etc/ssl/dprofile.key;
+
+    root /var/www/dprofile;
+    index search.html;
+
+    location / {
+        try_files $uri $uri/ @htmlext;
+    }
+
+    location ~ \.html$ {
+        try_files $uri =404;
+    }
+
+    location @htmlext {
+        rewrite ^(.*)$ $1.html last;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+}
+
+server {
+    return 301 https://$host$request_uri;
+}
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    listen 80;
+    listen [::]:80;
+
+    server_name *.dprofile;
+
+    ssl_certificate /etc/ssl/dprofile.crt;
+    ssl_certificate_key /etc/ssl/dprofile.key;
+
+    root /var/www/dprofile;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ @htmlext;
+    }
+
+    location ~ \.html$ {
+        try_files $uri =404;
+    }
+
+    location @htmlext {
+        rewrite ^(.*)$ $1.html last;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+}
+
+server {
+    return 301 https://$host$request_uri;
+}

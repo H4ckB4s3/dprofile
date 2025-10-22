@@ -65,7 +65,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 | **Prefix**                   | **Purpose**                      | **Example**                |
 |------------------------------|----------------------------------|----------------------------|
 | `yt:<username>`              | YouTube channel/URL              | `yt:username`              |
-| `rumble:<channelname>`       | Rumble channel/URL	          | `rumble:channelname`       |
+| `rumble:<channelname>`       | Rumble channel/URL	            | `rumble:channelname`       |
 
 ### Layout
 | **Prefix**                   | **Purpose**                      | **Example**                |
@@ -92,7 +92,7 @@ btc, ln, hns, eth, xmr, zec, bat, aave, ada, algo, apt, atom, avax, bch, bgb, bn
 ---
 
 #### Note:
-This is an experimental demo. It uses https://hnsns.net (by [eskimo](https://github.com/eskimo)) to fetch the TXT records. When an NS is set up, it will fetch only off-chain TXT records.. It works with Handshake HNS TLDs, HNS SLDs, HNS dSLDs, and ICANN SLDs.
+This is an experimental demo. It uses an HNS node (by [eskimo](https://github.com/eskimo)) to fetch the TXT records. When an NS is set up, it will fetch only off-chain TXT records.. It works with Handshake HNS TLDs, HNS SLDs, HNS dSLDs, and ICANN SLDs.
 
 Using [fingertip](https://github.com/username/fingertip) is recommended. Only TLDs support a secure connection. So you can visit [https://tld.dprofile](https://tld.dprofile) but a SLD would be [http://sld.tld.dprofile](http://sld.tld.dprofile).
 

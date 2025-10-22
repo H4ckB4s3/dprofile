@@ -15,7 +15,7 @@ TXT record prefixes standardize how information is structured and interpreted, m
 
 ## Setup Instructions
 
-1. Navigate to your domain manager (e.g., [Namebase](https://namebase.io)).
+1. Navigate to your domain manager (e.g., [Shakestation](https://shakestation.io), [Namebase](https://namebase.io), ...).
 2. Add a new TXT record with the following configuration:
    - **Type**: TXT  
    - **Name**: `@`  
